@@ -1,32 +1,27 @@
-# 🚀 GigFlow Dashboard (MERN + TypeScript)
+# GigFlow Dashboard (MERN + TypeScript)
 
-A premium, production-grade **Lead Management Dashboard** designed with absolute visual excellence. Features robust role-based access control, advanced dynamic filtering, debounced search, MongoDB server-side pagination, and seamless CSV exports.
+GigFlow Dashboard is a full-stack Lead Management system built with TypeScript. It provides role-based access control, advanced filtering with debounced search, MongoDB-backed pagination, and CSV export for lead data.
 
----
+## Key Features
+- Role-based authentication (admin and sales users)
+- Lead CRUD with validation and robust error handling
+- Server-side pagination and compound indexes
+- Search and filter pipelines with debounced queries
+- Dashboard stats aggregation
+- CSV export of filtered lead data
+- Dockerized local and production builds
 
-## 💎 Design & Aesthetics
-- **Dark Glassmorphism**: Tailored vibrant dark-purple `brand-600` accent color palette with translucent blur overlays.
-- **Premium Micro-animations**: Smooth hover scaling, slide-up modal entries, and modern animated skeleton/loading spinners.
-- **Responsive Layout**: Designed first-class for mobile, tablet, and desktop viewing.
-
----
-
-## 🛠️ Tech Stack
+## Tech Stack
 - **Frontend**: React 18 + TypeScript + TailwindCSS v3 + Axios + React Router v6
-- **Backend**: Node.js + Express + TypeScript + MongoDB + mongoose
-- **Authentication**: JWT + bcryptjs + Express Validator
-- **DevOps**: Docker + docker-compose
+- **Backend**: Node.js + Express + TypeScript + MongoDB + Mongoose
+- **Authentication**: JWT + bcryptjs + express-validator
+- **DevOps**: Docker + Docker Compose
 
----
+## Documentation
+- [API Documentation](docs/API%20Documentation.md)
+- [Setup & Launch Instructions](docs/Setup%20Instructions.md)
 
-## 📚 Project Documentation
-For comprehensive details on setting up, configuring, and interacting with the system, refer to the following dedicated manuals:
-- **[API Documentation](docs/API%20Documentation.md)** / **[Local Absolute Path](file:///home/demigod/Desktop/Internship/ServiceHive/docs/API%20Documentation.md)**
-- **[Setup & Launch Instructions](docs/Setup%20Instructions.md)** / **[Local Absolute Path](file:///home/demigod/Desktop/Internship/ServiceHive/docs/Setup%20Instructions.md)**
-
----
-
-## 📁 Repository Structure
+## Repository Structure
 ```
 .
 ├── backend/
@@ -58,9 +53,7 @@ For comprehensive details on setting up, configuring, and interacting with the s
 └── README.md
 ```
 
----
-
-## ⚡ Setup & Launch Instructions
+## Setup & Launch Instructions
 
 ### Method 1: Local Development Execution
 
@@ -97,7 +90,7 @@ Access the client-side app directly at `http://localhost:3000`.
 
 ---
 
-## 🛰️ API Endpoint Documentation
+## API Endpoint Documentation
 
 ### Authentication Routes
 | Method | Endpoint | Auth Required | Description | Request Body |
@@ -119,22 +112,22 @@ Access the client-side app directly at `http://localhost:3000`.
 
 ---
 
-## 🛡️ Role-Based Access Control & Testing Accounts
+## Role-Based Access Control & Testing Accounts
 To evaluate administrative vs sales representative features:
 - **Sales User Account**: Register normally. Has CRUD access over leads they generate.
 - **Admin Account**: Register by expanding the *"Are you an Admin?"* link and providing the `admin_secret_for_creating_admin_users` value (defined in `.env`).
 
 ---
 
-## 🔧 Recent Bug Fixes & Stability Patches
-We audited and resolved several production-grade bugs across the backend layer:
+## Recent Fixes
+We audited and resolved several backend issues:
 - **`express-validator` v7 Union Types Bug**: Resolved an issue where field-level validation errors mapped generic `"field": "field"` keys in error responses instead of the actual failed parameter name (e.g. `email`, `password`), ensuring API consumers and frontends can parse bad inputs correctly.
 - **Centralized Database Collision Handler**: Resolved a strict type-matching error where unique index constraint collisions from MongoDB returned a numeric error code (`11000`) but were evaluated using strict string equality (`=== '11000'`). This now properly triggers a clean `409 Conflict` envelope instead of unhandled `500` server exceptions.
 - **Strict TypeScript Compiler Paths**: Explicitly set `"moduleResolution": "node"` in `backend/tsconfig.json` to guarantee path lookups for extensionless TypeScript imports, completely satisfying strict editor checks.
 
 ---
 
-## 📋 Assignment Deliverables Checklist
+## Assignment Deliverables Checklist
 - [x] Full-Stack TypeScript MERN stack implementation
 - [x] Standard JWT local storage authentication and auto-logout verification
 - [x] Advanced dynamic pipeline filtering with debounced searching
