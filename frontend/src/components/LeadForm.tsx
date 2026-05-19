@@ -57,15 +57,15 @@ export const LeadForm: React.FC<LeadFormProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-950/80 backdrop-blur-sm p-4">
-      <div className="bg-gray-900 border border-gray-800 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden animate-slide-up">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800">
-          <h2 className="text-lg font-bold text-white">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm p-4 transition-colors">
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden animate-slide-up">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-800">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white">
             {lead ? '✏️ Edit Lead details' : '➕ Create New Lead'}
           </h2>
           <button
             onClick={onCancel}
-            className="text-gray-400 hover:text-white transition-colors"
+            className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -75,7 +75,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {formError && (
-            <div className="p-3 bg-red-900/20 border border-red-800 text-red-300 rounded-lg text-sm">
+            <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-300 rounded-lg text-sm">
               {formError}
             </div>
           )}
@@ -133,7 +133,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-gray-800">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-800">
             <button
               type="button"
               onClick={onCancel}

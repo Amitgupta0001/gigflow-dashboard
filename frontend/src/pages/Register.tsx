@@ -31,17 +31,17 @@ export const Register: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center bg-gray-950 px-4 py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col justify-center bg-gray-50 dark:bg-gray-950 px-4 py-12 sm:px-6 lg:px-8 transition-colors">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
           <svg className="w-12 h-12 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold tracking-tight text-white">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
           Create an account
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-400">
+        <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
           Get started with your GigFlow dashboard
         </p>
       </div>
@@ -131,13 +131,18 @@ export const Register: React.FC = () => {
             </div>
           </form>
 
-          <div className="mt-6 text-center">
-            <span className="text-sm text-gray-400">
-              Already have an account?{' '}
-              <Link to="/login" className="font-semibold text-brand-400 hover:text-brand-300 transition-colors">
-                Sign In here
-              </Link>
-            </span>
+          <div className="mt-6 relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300 dark:border-gray-800" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white dark:bg-gray-900 text-gray-500 dark:text-gray-400">
+                Already have an account?{' '}
+                <Link to="/login" className="font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+                  Sign In here
+                </Link>
+              </span>
+            </div>
           </div>
         </div>
       </div>

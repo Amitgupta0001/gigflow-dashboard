@@ -27,14 +27,14 @@ export const LeadList: React.FC<LeadListProps> = ({
   if (leads.length === 0) {
     return (
       <div className="card text-center py-16 flex flex-col items-center justify-center gap-4">
-        <div className="p-4 bg-gray-800/50 rounded-full border border-gray-700">
-          <svg className="w-8 h-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="p-4 bg-gray-100/50 dark:bg-gray-800/50 rounded-full border border-gray-200 dark:border-gray-700">
+          <svg className="w-8 h-8 text-gray-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
         </div>
         <div>
-          <h3 className="text-lg font-bold text-white">No leads found</h3>
-          <p className="text-sm text-gray-400 mt-1 max-w-sm">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white">No leads found</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 max-w-sm">
             Try adjusting your status, source, search term, or create a brand new lead to get started.
           </p>
         </div>
@@ -58,11 +58,11 @@ export const LeadList: React.FC<LeadListProps> = ({
 
       {/* Pagination Controls */}
       {pagination.pages > 1 && (
-        <div className="flex items-center justify-between border-t border-gray-800/80 pt-6">
-          <div className="text-xs text-gray-400 font-medium">
-            Showing Page <span className="text-white font-semibold">{pagination.page}</span> of{' '}
-            <span className="text-white font-semibold">{pagination.pages}</span> (Total{' '}
-            <span className="text-white font-semibold">{pagination.total}</span> leads)
+        <div className="flex items-center justify-between border-t border-gray-200 dark:border-gray-800/80 pt-6">
+          <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+            Showing Page <span className="text-gray-900 dark:text-white font-semibold">{pagination.page}</span> of{' '}
+            <span className="text-gray-900 dark:text-white font-semibold">{pagination.pages}</span> (Total{' '}
+            <span className="text-gray-900 dark:text-white font-semibold">{pagination.total}</span> leads)
           </div>
           <div className="flex gap-2">
             <button
@@ -79,7 +79,7 @@ export const LeadList: React.FC<LeadListProps> = ({
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all duration-150 ${
                   pagination.page === p
                     ? 'bg-brand-600 text-white border-brand-500'
-                    : 'bg-gray-800 text-gray-400 border-gray-700 hover:text-white'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
                 {p}

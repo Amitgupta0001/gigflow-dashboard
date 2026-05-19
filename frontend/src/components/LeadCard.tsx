@@ -38,13 +38,13 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onEdit, onDelete }) =>
       onClick={() => navigate(`/lead/${lead._id}`)}
       className="card hover:border-brand-500/50 cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 relative group"
     >
-      <div className="flex justify-between items-start mb-3">
+      <div className="flex justify-between items-start mb-4">
         <div>
-          <h3 className="text-base font-semibold text-white group-hover:text-brand-400 transition-colors duration-200">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-brand-500 transition-colors">
             {lead.name}
           </h3>
-          <p className="text-xs text-gray-400 mt-0.5 flex items-center gap-1">
-            <svg className="w-3.5 h-3.5 flex-shrink-0 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 flex items-center gap-1">
+            <svg className="w-3.5 h-3.5 flex-shrink-0 text-gray-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
             <span className="truncate max-w-[180px]">{lead.email}</span>
@@ -56,9 +56,9 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onEdit, onDelete }) =>
         </div>
       </div>
 
-      <div className="flex justify-between items-center pt-4 border-t border-gray-800/80 mt-4">
+      <div className="flex justify-between items-center pt-4 border-t border-gray-200 dark:border-gray-800/80 mt-4">
         <span className="text-[10px] text-gray-500 flex items-center gap-1">
-          <svg className="w-3.5 h-3.5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-3.5 h-3.5 text-gray-400 dark:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           {new Date(lead.createdAt).toLocaleDateString(undefined, {
@@ -74,7 +74,7 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onEdit, onDelete }) =>
               e.stopPropagation();
               onEdit(lead);
             }}
-            className="p-1.5 text-gray-400 hover:text-brand-400 hover:bg-gray-800 rounded-lg transition-all"
+            className="p-1.5 text-gray-500 dark:text-gray-400 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
             title="Edit Lead"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -83,7 +83,7 @@ export const LeadCard: React.FC<LeadCardProps> = ({ lead, onEdit, onDelete }) =>
           </button>
           <button
             onClick={handleDelete}
-            className="p-1.5 text-gray-400 hover:text-red-400 hover:bg-gray-800 rounded-lg transition-all"
+            className="p-1.5 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
             title="Delete Lead"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

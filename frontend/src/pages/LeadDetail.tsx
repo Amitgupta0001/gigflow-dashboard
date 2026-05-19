@@ -75,7 +75,7 @@ export const LeadDetail: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-950 flex flex-col">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col transition-colors">
         <Navbar />
         <div className="flex-1 flex items-center justify-center">
           <LoadingSpinner message="Retrieving lead detail information..." />
@@ -85,7 +85,7 @@ export const LeadDetail: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 flex flex-col">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 flex flex-col transition-colors">
       <Navbar />
 
       <main className="flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 py-10 space-y-6">
@@ -107,10 +107,10 @@ export const LeadDetail: React.FC = () => {
         {lead && (
           <div className="card space-y-6 animate-fade-in shadow-2xl">
             {/* Header info */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-gray-800 gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-gray-200 dark:border-gray-800 gap-4">
               <div>
-                <h1 className="text-2xl font-black text-white">{lead.name}</h1>
-                <p className="text-sm text-gray-400 mt-1">{lead.email}</p>
+                <h1 className="text-2xl font-black text-gray-900 dark:text-white">{lead.name}</h1>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{lead.email}</p>
               </div>
               <div className="flex items-center gap-3">
                 <button
@@ -177,7 +177,7 @@ export const LeadDetail: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-6 border-t border-gray-800 mt-6">
+              <div className="flex items-center justify-end gap-3 pt-6 border-t border-gray-200 dark:border-gray-800 mt-6">
                 <button
                   type="submit"
                   disabled={updating}

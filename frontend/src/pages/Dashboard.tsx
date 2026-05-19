@@ -67,17 +67,17 @@ export const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 flex flex-col">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 flex flex-col transition-colors">
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         {/* Header row */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
               Dashboard Overview
             </h1>
-            <p className="text-sm text-gray-400 mt-1">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               Analyze leads performance, sort pipelines, and export sales insights.
             </p>
           </div>
@@ -107,29 +107,29 @@ export const Dashboard: React.FC = () => {
         {/* Dashboard Stats Panel */}
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
           {/* Card 1: Total */}
-          <div className="card py-4 px-5 bg-gradient-to-br from-gray-900 to-gray-800 border-gray-800">
-            <span className="text-xs font-semibold text-gray-400">Total Leads</span>
-            <div className="text-2xl sm:text-3xl font-black text-white mt-1.5">{stats?.totalLeads || 0}</div>
+          <div className="card py-4 px-5 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 border-gray-200 dark:border-gray-800">
+            <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">Total Leads</span>
+            <div className="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white mt-1.5">{stats?.totalLeads || 0}</div>
           </div>
           {/* Card 2: New */}
-          <div className="card py-4 px-5 border-blue-900/30 bg-blue-950/10">
-            <span className="text-xs font-semibold text-blue-400">🆕 New Leads</span>
-            <div className="text-2xl sm:text-3xl font-black text-blue-300 mt-1.5">{getStatusCount('new')}</div>
+          <div className="card py-4 px-5 border-blue-200 dark:border-blue-900/30 bg-blue-50 dark:bg-blue-950/10">
+            <span className="text-xs font-semibold text-blue-600 dark:text-blue-400">🆕 New Leads</span>
+            <div className="text-2xl sm:text-3xl font-black text-blue-700 dark:text-blue-300 mt-1.5">{getStatusCount('new')}</div>
           </div>
           {/* Card 3: Contacted */}
-          <div className="card py-4 px-5 border-yellow-900/30 bg-yellow-950/10">
-            <span className="text-xs font-semibold text-yellow-400">⚡ Contacted</span>
-            <div className="text-2xl sm:text-3xl font-black text-yellow-300 mt-1.5">{getStatusCount('contacted')}</div>
+          <div className="card py-4 px-5 border-yellow-200 dark:border-yellow-900/30 bg-yellow-50 dark:bg-yellow-950/10">
+            <span className="text-xs font-semibold text-yellow-600 dark:text-yellow-400">⚡ Contacted</span>
+            <div className="text-2xl sm:text-3xl font-black text-yellow-700 dark:text-yellow-300 mt-1.5">{getStatusCount('contacted')}</div>
           </div>
           {/* Card 4: Qualified */}
-          <div className="card py-4 px-5 border-green-900/30 bg-green-950/10">
-            <span className="text-xs font-semibold text-green-400">💎 Qualified</span>
-            <div className="text-2xl sm:text-3xl font-black text-green-300 mt-1.5">{getStatusCount('qualified')}</div>
+          <div className="card py-4 px-5 border-green-200 dark:border-green-900/30 bg-green-50 dark:bg-green-950/10">
+            <span className="text-xs font-semibold text-green-600 dark:text-green-400">💎 Qualified</span>
+            <div className="text-2xl sm:text-3xl font-black text-green-700 dark:text-green-300 mt-1.5">{getStatusCount('qualified')}</div>
           </div>
           {/* Card 5: Lost */}
-          <div className="card py-4 px-5 border-red-900/30 bg-red-950/10">
-            <span className="text-xs font-semibold text-red-400">❌ Lost Leads</span>
-            <div className="text-2xl sm:text-3xl font-black text-red-300 mt-1.5">{getStatusCount('lost')}</div>
+          <div className="card py-4 px-5 border-red-200 dark:border-red-900/30 bg-red-50 dark:bg-red-950/10">
+            <span className="text-xs font-semibold text-red-600 dark:text-red-400">❌ Lost Leads</span>
+            <div className="text-2xl sm:text-3xl font-black text-red-700 dark:text-red-300 mt-1.5">{getStatusCount('lost')}</div>
           </div>
         </div>
 
