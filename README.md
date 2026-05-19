@@ -10,6 +10,7 @@ GigFlow Dashboard is a full-stack Lead Management system built with TypeScript. 
 - Dashboard stats aggregation
 - CSV export of filtered lead data
 - Dockerized local and production builds
+- 🌗 **Dark Mode Support** (Responsive multi-theme UI)
 
 ## Tech Stack
 - **Frontend**: React 18 + TypeScript + TailwindCSS v3 + Axios + React Router v6
@@ -17,7 +18,9 @@ GigFlow Dashboard is a full-stack Lead Management system built with TypeScript. 
 - **Authentication**: JWT + bcryptjs + express-validator
 - **DevOps**: Docker + Docker Compose
 
-## Documentation
+## Documentation & Live Demos
+- **Live Frontend**: [https://gigflow-dashboard-gold.vercel.app](https://gigflow-dashboard-gold.vercel.app)
+- **Live Backend API**: [https://gigflow-backend-9zsj.onrender.com/api/health](https://gigflow-backend-9zsj.onrender.com/api/health)
 - [API Documentation](docs/API%20Documentation.md)
 - [Setup & Launch Instructions](docs/Setup%20Instructions.md)
 
@@ -136,3 +139,4 @@ We audited and resolved several backend issues:
 - [x] Direct streaming CSV exporter
 - [x] Multi-stage production container setup via Dockerfiles & Compose file
 - [x] Validations on both frontend input elements and backend endpoint parameters
+- [x] BONUS: Implemented centralized Theme Context for Dynamic Dark Mode Support

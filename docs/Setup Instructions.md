@@ -4,6 +4,13 @@ This document provides clear, step-by-step instructions on setting up and runnin
 
 ---
 
+## 🌐 Live Deployments (Quick Access)
+If you just want to test the application without setting it up locally, you can use the live hosted versions:
+- **Frontend (Vercel)**: [https://gigflow-dashboard-gold.vercel.app](https://gigflow-dashboard-gold.vercel.app)
+- **Backend API (Render)**: [https://gigflow-backend-9zsj.onrender.com/api/health](https://gigflow-backend-9zsj.onrender.com/api/health)
+
+---
+
 ## 📋 Prerequisites
 Before launching, make sure you have the following programs installed:
 - [Node.js](https://nodejs.org/) (v18 or higher recommended)
