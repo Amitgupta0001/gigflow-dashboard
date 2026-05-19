@@ -1,46 +1,110 @@
-# Getting Started with Create React App
+# GigFlow Dashboard — Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React 18 + TypeScript client for the **GigFlow Lead Management Dashboard**. Built with TailwindCSS v3, Axios, and React Router v6.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Quick Start
 
-### `npm start`
+```bash
+npm install
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Opens at `http://localhost:3000`. The backend must be running at `http://localhost:5000` (or set via `REACT_APP_API_URL`).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## 📋 Available Scripts
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Command | Description |
+|---|---|
+| `npm start` | Runs the dev server with hot reload at `http://localhost:3000` |
+| `npm run build` | Produces an optimized production bundle in `/build` |
+| `npm test` | Launches the test runner in interactive watch mode |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🗂️ Project Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+src/
+├── components/          # Shared, reusable UI components
+│   ├── KanbanBoard.tsx      # Drag-and-drop pipeline board
+│   ├── LeadList.tsx         # Paginated list view
+│   ├── LeadForm.tsx         # Create / edit lead modal
+│   ├── FilterBar.tsx        # Status, source, search, sort controls
+│   ├── DealDetailsSidebar.tsx # Slide-in lead detail panel
+│   ├── CardContextMenu.tsx  # Right-click context menu
+│   └── ErrorMessage.tsx     # Inline error banner
+│
+├── context/             # React context providers
+│   ├── AuthContext.tsx      # Auth session state
+│   ├── ThemeContext.tsx     # Light / dark mode toggle
+│   └── ToastContext.tsx     # Toast notification system
+│
+├── hooks/               # Custom React hooks
+│   ├── useAuth.ts           # Login, logout, updateProfile
+│   └── useLeads.ts          # CRUD, filters, pagination, CSV export
+│
+├── pages/               # Route-level page components
+│   ├── Dashboard.tsx        # Main shell: sidebar, header, KPI cards, modals
+│   ├── ReportsView.tsx      # Analytics sub-view (pipeline KPIs, top deals)
+│   ├── SourcesView.tsx      # Acquisition channel stats sub-view
+│   ├── TasksView.tsx        # Tasks and scheduled actions sub-view
+│   ├── Login.tsx            # Login page
+│   ├── Register.tsx         # Two-column sign-up form
+│   └── NotFound.tsx         # 404 page
+│
+├── services/            # Axios API layer
+│   ├── api.ts               # Axios instance with auth interceptors
+│   ├── authService.ts       # register, login, me, updateProfile
+│   └── leadService.ts       # CRUD, export, stats endpoints
+│
+├── types/               # Shared TypeScript interfaces
+│   └── index.ts             # Lead, User, LeadStatus, AuthResponse, etc.
+│
+├── App.tsx              # Route tree
+├── index.css            # Global Tailwind stylesheet + dual-theme badges
+└── index.tsx            # React entry point
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🌗 Theme Support
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Click the 🌙/☀️ icon in the top-right header to switch between **Light Mode** and **Dark Mode**. Both themes are fully supported across all components, modals, badges, and sub-views.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🔐 Environment Variables
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Create a `.env` file in this directory if your backend runs on a different address:
 
-## Learn More
+```ini
+REACT_APP_API_URL=http://localhost:5000
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+If not set, defaults to `http://localhost:5000` for local development.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+## 🐳 Docker
+
+The frontend is containerized with a multi-stage `Dockerfile`:
+- **Stage 1**: Builds the production bundle via `npm run build`
+- **Stage 2**: Serves the static files via an Nginx proxy on port `3000`
+
+Run the entire stack with:
+```bash
+# from the project root
+docker-compose up --build
+```
+
+---
+
+## 📚 Full Documentation
+
+- [API Documentation](../docs/API%20Documentation.md)
+- [Setup & Launch Instructions](../docs/Setup%20Instructions.md)
+- [Root README](../README.md)
