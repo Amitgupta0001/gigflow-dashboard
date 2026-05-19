@@ -46,8 +46,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const register = useCallback(
-    async (name: string, email: string, password: string, adminSecret?: string) => {
-      const data = await authService.register(name, email, password, adminSecret);
+    async (
+      name: string,
+      email: string,
+      password: string,
+      adminSecret?: string,
+      phone?: string,
+      title?: string,
+      company?: string
+    ) => {
+      const data = await authService.register(name, email, password, adminSecret, phone, title, company);
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
       setToken(data.token);
@@ -63,12 +71,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(null);
   }, []);
 
+  const updateProfile = useCallback(async (data: any) => {
+    const updatedUser = await authService.updateProfile(data);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+    setUser(updatedUser);
+  }, []);
+
   const value: AuthContextType = {
     user,
     token,
     login,
     register,
     logout,
+    updateProfile,
     isAuthenticated: !!token && !!user,
     loading,
   };

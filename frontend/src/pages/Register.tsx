@@ -10,6 +10,9 @@ export const Register: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [title, setTitle] = useState('');
+  const [company, setCompany] = useState('');
   const [adminSecret, setAdminSecret] = useState('');
   const [showAdminField, setShowAdminField] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -21,7 +24,15 @@ export const Register: React.FC = () => {
     setLoading(true);
 
     try {
-      await register(name, email, password, adminSecret || undefined);
+      await register(
+        name,
+        email,
+        password,
+        adminSecret || undefined,
+        phone || undefined,
+        title || undefined,
+        company || undefined
+      );
       navigate('/');
     } catch (err: any) {
       setError(err.response?.data?.message || 'Registration failed');
@@ -34,9 +45,7 @@ export const Register: React.FC = () => {
     <div className="min-h-screen flex flex-col justify-center bg-gray-50 dark:bg-gray-950 px-4 py-12 sm:px-6 lg:px-8 transition-colors">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <svg className="w-12 h-12 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
+          <img src="/logo.png" alt="GigFlow Logo" className="w-14 h-14 object-contain rounded-xl" />
         </div>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
           Create an account
@@ -46,45 +55,80 @@ export const Register: React.FC = () => {
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="card py-8 px-4 sm:px-10 shadow-2xl animate-fade-in">
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-xl animate-fade-in">
+        <div className="card py-8 px-6 sm:px-10 shadow-2xl">
           {error && <ErrorMessage message={error} onDismiss={() => setError(null)} />}
 
-          <form className="space-y-5" onSubmit={handleSubmit}>
-            <div>
-              <label className="label">Name</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="e.g. Rahul Sharma"
-                required
-                className="input"
-              />
-            </div>
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="label">Full Name</label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="e.g. Rahul Sharma"
+                  required
+                  className="input"
+                />
+              </div>
 
-            <div>
-              <label className="label">Email Address</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="e.g. rahul@example.com"
-                required
-                className="input"
-              />
-            </div>
+              <div>
+                <label className="label">Email Address</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="e.g. rahul@example.com"
+                  required
+                  className="input"
+                />
+              </div>
 
-            <div>
-              <label className="label">Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Min 6 characters"
-                required
-                className="input"
-              />
+              <div>
+                <label className="label">Phone Number (Optional)</label>
+                <input
+                  type="text"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="e.g. 555-123-4567"
+                  className="input"
+                />
+              </div>
+
+              <div>
+                <label className="label">Job Title (Optional)</label>
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="e.g. Lead Sales Director"
+                  className="input"
+                />
+              </div>
+
+              <div>
+                <label className="label">Company Name (Optional)</label>
+                <input
+                  type="text"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  placeholder="e.g. ServiceHive Inc"
+                  className="input"
+                />
+              </div>
+
+              <div>
+                <label className="label">Password</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Min 6 characters"
+                  required
+                  className="input"
+                />
+              </div>
             </div>
 
             <div className="pt-1">
