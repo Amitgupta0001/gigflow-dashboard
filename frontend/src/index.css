@@ -6,72 +6,128 @@
 
 @layer base {
   * {
-    @apply border-gray-200 dark:border-gray-800;
+    box-sizing: border-box;
   }
   body {
-    @apply bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 font-sans antialiased transition-colors;
+    @apply bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 font-sans antialiased transition-colors duration-200;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-900 dark:text-white;
+  }
+  p {
+    @apply text-gray-700 dark:text-gray-300;
   }
 }
 
 @layer components {
+  /* ── Buttons ── */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-4 py-2 bg-brand-600 text-white text-sm font-semibold rounded-lg
-           hover:bg-brand-700 active:bg-brand-800 transition-all duration-150
-           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-gray-950
+    @apply inline-flex items-center gap-2 px-4 py-2
+           bg-brand-600 text-white text-sm font-semibold rounded-lg
+           hover:bg-brand-700 active:bg-brand-800
+           transition-all duration-150 cursor-pointer
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2
+           focus:ring-offset-white dark:focus:ring-offset-gray-950
            disabled:opacity-50 disabled:cursor-not-allowed;
   }
   .btn-secondary {
-    @apply inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200 text-sm font-semibold rounded-lg
-           hover:bg-gray-200 dark:hover:bg-gray-700 active:bg-gray-300 dark:active:bg-gray-600 transition-all duration-150
-           focus:outline-none focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-950
+    @apply inline-flex items-center gap-2 px-4 py-2
+           bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200
+           text-sm font-semibold rounded-lg border border-gray-200 dark:border-gray-700
+           hover:bg-gray-200 dark:hover:bg-gray-700
+           active:bg-gray-300 dark:active:bg-gray-600
+           transition-all duration-150 cursor-pointer
+           focus:outline-none focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600
+           focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-950
            disabled:opacity-50 disabled:cursor-not-allowed;
   }
   .btn-danger {
-    @apply inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white text-sm font-semibold rounded-lg
-           hover:bg-red-700 active:bg-red-800 transition-all duration-150
-           focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-950
+    @apply inline-flex items-center gap-2 px-4 py-2
+           bg-red-600 text-white text-sm font-semibold rounded-lg
+           hover:bg-red-700 active:bg-red-800
+           transition-all duration-150 cursor-pointer
+           focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2
+           focus:ring-offset-white dark:focus:ring-offset-gray-950
            disabled:opacity-50 disabled:cursor-not-allowed;
   }
+
+  /* ── Card ── */
   .card {
-    @apply bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-xl p-6 shadow-sm dark:shadow-none;
+    @apply bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-700
+           rounded-xl p-6 shadow-sm dark:shadow-none;
   }
+
+  /* ── Form Controls ── */
   .input {
-    @apply w-full px-3 py-2.5 bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-gray-100 rounded-lg text-sm
-           placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent
+    @apply w-full px-3 py-2.5
+           bg-white border border-gray-300
+           dark:bg-gray-800 dark:border-gray-600
+           text-gray-900 dark:text-gray-100
+           rounded-lg text-sm
+           placeholder-gray-400 dark:placeholder-gray-500
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent
            transition-all duration-150;
   }
   .label {
-    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5;
+    @apply block text-xs font-semibold uppercase tracking-wide
+           text-gray-600 dark:text-gray-400 mb-1.5;
   }
+
+  /* ── Status Badges — visible in BOTH themes ── */
   .badge-new {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-900/60 text-blue-300 border border-blue-800;
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold
+           bg-blue-100 text-blue-700 border border-blue-200
+           dark:bg-blue-900/50 dark:text-blue-300 dark:border-blue-800;
   }
   .badge-contacted {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-yellow-900/60 text-yellow-300 border border-yellow-800;
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold
+           bg-amber-100 text-amber-700 border border-amber-200
+           dark:bg-yellow-900/50 dark:text-yellow-300 dark:border-yellow-800;
   }
   .badge-qualified {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-900/60 text-green-300 border border-green-800;
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold
+           bg-emerald-100 text-emerald-700 border border-emerald-200
+           dark:bg-green-900/50 dark:text-green-300 dark:border-green-800;
+  }
+  .badge-won {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold
+           bg-green-100 text-green-700 border border-green-200
+           dark:bg-green-900/50 dark:text-green-300 dark:border-green-800;
   }
   .badge-lost {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-900/60 text-red-300 border border-red-800;
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold
+           bg-red-100 text-red-700 border border-red-200
+           dark:bg-red-900/50 dark:text-red-300 dark:border-red-800;
   }
   .badge-source {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-900/60 text-purple-300 border border-purple-800;
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold
+           bg-purple-100 text-purple-700 border border-purple-200
+           dark:bg-purple-900/50 dark:text-purple-300 dark:border-purple-800;
   }
 }
 
-/* Scrollbar */
+/* ── Scrollbar ── */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
   @apply bg-gray-300 dark:bg-gray-700;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-400 dark:bg-gray-600;
+}
+
+/* ── Light-mode sidebar fix ── */
+.light-sidebar {
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+}
+.dark .light-sidebar {
+  background: #0B0F19;
+  border-right: none;
 }

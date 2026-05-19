@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { ToastProvider } from './context/ToastContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // Pages
@@ -15,34 +16,36 @@ const App: React.FC = () => {
   return (
     <ThemeProvider>
       <AuthProvider>
-      <Router>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+        <ToastProvider>
+          <Router>
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
 
-          {/* Protected Routes */}
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/lead/:id"
-            element={
-              <ProtectedRoute>
-                <LeadDetail />
-              </ProtectedRoute>
-            }
-          />
+              {/* Protected Routes */}
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/lead/:id"
+                element={
+                  <ProtectedRoute>
+                    <LeadDetail />
+                  </ProtectedRoute>
+                }
+              />
 
-          {/* Fallback 404 Route */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Router>
+              {/* Fallback 404 Route */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Router>
+        </ToastProvider>
       </AuthProvider>
     </ThemeProvider>
   );

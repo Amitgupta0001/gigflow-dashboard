@@ -58,13 +58,14 @@ export const useLeads = () => {
     fetchStats();
   }, [fetchLeads, fetchStats]);
 
-  const createLead = async (data: { name: string; email: string; status: string; source: string }) => {
+  const createLead = async (data: any) => {
     setLoading(true);
     setError(null);
     try {
-      await leadService.createLead(data);
+      const created = await leadService.createLead(data);
       await fetchLeads();
       await fetchStats();
+      return created;
     } catch (err: any) {
       setError(err.response?.data?.message || 'Error creating lead');
       throw err;
@@ -73,13 +74,14 @@ export const useLeads = () => {
     }
   };
 
-  const updateLead = async (id: string, data: Partial<{ name: string; email: string; status: string; source: string }>) => {
+  const updateLead = async (id: string, data: Partial<any>) => {
     setLoading(true);
     setError(null);
     try {
-      await leadService.updateLead(id, data);
+      const updated = await leadService.updateLead(id, data);
       await fetchLeads();
       await fetchStats();
+      return updated;
     } catch (err: any) {
       setError(err.response?.data?.message || 'Error updating lead');
       throw err;
@@ -115,6 +117,10 @@ export const useLeads = () => {
     setPagination((prev) => ({ ...prev, page }));
   };
 
+  const changeLimit = (limit: number) => {
+    setPagination((prev) => ({ ...prev, limit, page: 1 }));
+  };
+
   const updateFilters = (newFilters: Partial<Filters>) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
     setPagination((prev) => ({ ...prev, page: 1 })); // Reset to first page on filter change
@@ -140,6 +146,7 @@ export const useLeads = () => {
     updateFilters,
     clearFilters,
     changePage,
+    changeLimit,
     createLead,
     updateLead,
     deleteLead,

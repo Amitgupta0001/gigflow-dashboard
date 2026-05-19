@@ -18,10 +18,8 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-2 font-extrabold text-xl text-gray-900 dark:text-white tracking-wider hover:opacity-90 transition-opacity">
-              <svg className="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            <Link to="/" className="flex items-center gap-2.5 font-extrabold text-xl text-gray-900 dark:text-white tracking-wider hover:opacity-90 transition-opacity">
+              <img src="/logo.png" alt="GigFlow Logo" className="w-8 h-8 object-contain rounded-lg" />
               <span>GigFlow</span>
             </Link>
             <div className="hidden sm:flex sm:space-x-4">
