@@ -23,3 +23,6 @@ yarn-error.log*
 # editor
 .vscode/
 .idea/
+
+# assignment
+Full Stack Intern Assigment.pdf
