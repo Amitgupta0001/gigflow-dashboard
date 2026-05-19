@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { register, login, getCurrentUser } from '../controllers/authController';
+import { register, login, getCurrentUser, updateProfile } from '../controllers/authController';
 import { validateRegister, validateLogin } from '../middleware/validation';
 import { authenticate } from '../middleware/auth';
 
@@ -13,5 +13,8 @@ router.post('/login', validateLogin, login);
 
 // GET /api/auth/me
 router.get('/me', authenticate, getCurrentUser);
+
+// PUT /api/auth/profile
+router.put('/profile', authenticate, updateProfile);
 
 export default router;

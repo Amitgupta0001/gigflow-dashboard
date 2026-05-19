@@ -13,7 +13,7 @@ const generateToken = (payload: UserPayload): string => {
 // POST /api/auth/register
 export const register = asyncHandler(
   async (req: AuthRequest, res: Response, _next: NextFunction): Promise<void> => {
-    const { name, email, password, adminSecret } = req.body;
+    const { name, email, password, adminSecret, phone, title, company } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -26,7 +26,7 @@ export const register = asyncHandler(
       role = 'admin';
     }
 
-    const user = await User.create({ name, email, password, role });
+    const user = await User.create({ name, email, password, role, phone, title, company });
 
     const payload: UserPayload = {
       id: (user._id as unknown as string).toString(),
@@ -45,6 +45,10 @@ export const register = asyncHandler(
           name: user.name,
           email: user.email,
           role: user.role,
+          phone: user.phone,
+          title: user.title,
+          company: user.company,
+          avatar: user.avatar,
         },
       },
     });
@@ -83,6 +87,10 @@ export const login = asyncHandler(
           name: user.name,
           email: user.email,
           role: user.role,
+          phone: user.phone,
+          title: user.title,
+          company: user.company,
+          avatar: user.avatar,
         },
       },
     });
@@ -106,6 +114,59 @@ export const getCurrentUser = asyncHandler(
           name: user.name,
           email: user.email,
           role: user.role,
+          phone: user.phone,
+          title: user.title,
+          company: user.company,
+          avatar: user.avatar,
+        },
+      },
+    });
+  }
+);
+
+// PUT /api/auth/profile
+export const updateProfile = asyncHandler(
+  async (req: AuthRequest, res: Response, _next: NextFunction): Promise<void> => {
+    if (!req.user) throw new AppError('Not authenticated', 401);
+
+    const { name, email, phone, title, company, avatar, password } = req.body;
+
+    const user = await User.findById(req.user.id);
+    if (!user) throw new AppError('User not found', 404);
+
+    if (email && email !== user.email) {
+      const emailExists = await User.findOne({ email });
+      if (emailExists) {
+        throw new AppError('Email is already registered', 409);
+      }
+      user.email = email;
+    }
+
+    if (name) user.name = name;
+    if (phone !== undefined) user.phone = phone;
+    if (title !== undefined) user.title = title;
+    if (company !== undefined) user.company = company;
+    if (avatar !== undefined) user.avatar = avatar;
+
+    if (password) {
+      user.password = password; // pre-save hook hashes this
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Profile updated successfully',
+      data: {
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          phone: user.phone,
+          title: user.title,
+          company: user.company,
+          avatar: user.avatar,
         },
       },
     });

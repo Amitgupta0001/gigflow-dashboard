@@ -1,13 +1,35 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
-export type LeadStatus = 'new' | 'contacted' | 'qualified' | 'lost';
+export type LeadStatus = 'new' | 'contacted' | 'qualified' | 'won' | 'lost';
 export type LeadSource = 'website' | 'instagram' | 'referral';
+
+export interface ITimelineItem {
+  type: 'creation' | 'call' | 'email' | 'note' | 'stage_change' | 'other';
+  text: string;
+  createdAt: Date;
+}
+
+export interface IAttachmentItem {
+  name: string;
+  size: number; // in bytes
+  url: string;
+}
 
 export interface ILead extends Document {
   name: string;
   email: string;
   status: LeadStatus;
   source: LeadSource;
+  company: string;
+  value: number;
+  phone: string;
+  title: string;
+  starred: boolean;
+  pinned: boolean;
+  nextAction: string;
+  lastContactedAt: Date;
+  timeline: ITimelineItem[];
+  attachments: IAttachmentItem[];
   userId: mongoose.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
@@ -32,8 +54,8 @@ const leadSchema = new Schema<ILead>(
     status: {
       type: String,
       enum: {
-        values: ['new', 'contacted', 'qualified', 'lost'],
-        message: 'Status must be one of: new, contacted, qualified, lost',
+        values: ['new', 'contacted', 'qualified', 'won', 'lost'],
+        message: 'Status must be one of: new, contacted, qualified, won, lost',
       },
       default: 'new',
     },
@@ -45,6 +67,60 @@ const leadSchema = new Schema<ILead>(
         message: 'Source must be one of: website, instagram, referral',
       },
     },
+    company: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    value: {
+      type: Number,
+      default: 0,
+    },
+    phone: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    title: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    starred: {
+      type: Boolean,
+      default: false,
+    },
+    pinned: {
+      type: Boolean,
+      default: false,
+    },
+    nextAction: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    lastContactedAt: {
+      type: Date,
+      default: Date.now,
+    },
+    timeline: [
+      {
+        type: {
+          type: String,
+          enum: ['creation', 'call', 'email', 'note', 'stage_change', 'other'],
+          required: true,
+        },
+        text: { type: String, required: true },
+        createdAt: { type: Date, default: Date.now },
+      },
+    ],
+    attachments: [
+      {
+        name: { type: String, required: true },
+        size: { type: Number, required: true },
+        url: { type: String, required: true },
+      },
+    ],
     userId: {
       type: Schema.Types.ObjectId,
       ref: 'User',

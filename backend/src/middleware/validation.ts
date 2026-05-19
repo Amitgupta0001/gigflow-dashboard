@@ -30,6 +30,9 @@ export const validateRegister = [
   body('password')
     .isLength({ min: 6 })
     .withMessage('Password must be at least 6 characters'),
+  body('phone').optional().trim(),
+  body('title').optional().trim(),
+  body('company').optional().trim(),
   handleValidationErrors,
 ];
 
@@ -47,10 +50,20 @@ export const validateLead = [
   body('email').isEmail().normalizeEmail().withMessage('Please provide a valid email'),
   body('status')
     .optional()
-    .isIn(['new', 'contacted', 'qualified', 'lost'])
-    .withMessage('Status must be one of: new, contacted, qualified, lost'),
+    .isIn(['new', 'contacted', 'qualified', 'won', 'lost'])
+    .withMessage('Status must be one of: new, contacted, qualified, won, lost'),
   body('source')
     .isIn(['website', 'instagram', 'referral'])
     .withMessage('Source must be one of: website, instagram, referral'),
+  body('company').optional().trim().isString(),
+  body('value').optional().isNumeric().withMessage('Value must be a number'),
+  body('phone').optional().trim().isString(),
+  body('title').optional().trim().isString(),
+  body('starred').optional().isBoolean(),
+  body('pinned').optional().isBoolean(),
+  body('nextAction').optional().trim().isString(),
+  body('lastContactedAt').optional().isISO8601(),
+  body('timeline').optional().isArray(),
+  body('attachments').optional().isArray(),
   handleValidationErrors,
 ];
